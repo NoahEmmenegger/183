@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M183 - GIBZ</title>
+    <link rel="manifest" href="https://m183.gibz-informatik.ch/favicon/android-icon-36x36.png">
+    <link rel="icon" href="https://m183.gibz-informatik.ch/favicon/android-icon-36x36.png" type="image/x-icon">
+    <style>
+        * {
+            margin: -1px;
+            padding: -1px;
+            overflow: hidden;
+        }
+
+        .floating {
+            z-index: 100;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+        }
+
+        .floating > div {
+            margin: auto;
+            margin-top: 191px;
+            background-color: white;
+        }
+
+        .username {
+            width: 65%;
+            border: none;
+            border-bottom: 2px solid grey;
+            padding: 5px;
+            font-size: large;
+        }
+
+        .password {
+            margin-top: 60px;
+            margin-bottom: 5px;
+            width: 65%;
+            border: none;
+            border-bottom: 2px solid grey;
+            padding: 5px;
+            font-size: large;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        button {
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            padding: 0 16px;
+            height: 34px;
+            border-radius: 4px;
+            font-size: .875rem;
+            font-size: medium;
+            margin-top: 63px;
+            margin-bottom: 10px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .username {
+                width: 95%;
+            }
+
+            .password {
+                width: 95%;
+            }
+        }
+
+        @media screen and (min-width: 950px) {
+            .username {
+                width: 45%;
+            }
+
+            .password {
+                width: 45%;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .username {
+                width: 400px;
+            }
+
+            .password {
+                width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating">
+        <div class="form-group">
+            <input class="username" type="text" placeholder="Username">
+            <br/>
+            <input class="password" type="text" placeholder="Password">
+            <br/>
+            <button value="test">LOGIN</button>
+        </div>
+    </div>
+    <iframe height="100%" width="100%" src="https://m183.gibz-informatik.ch/login"></iframe>
+</body>
+</html>
