@@ -2,6 +2,10 @@
 
 Die Animation habe ich extra weggelassen. Denn man sollte ja nicht ein extenes File laden, welches für mich die Animation gemacht hätte (bootstrap). 
 
+## Titel und favicon
+
+Der Titel und das favicon wurden vom echten Formular gestohlen und wirken daher noch täuschender.
+
 ## Automatische Weiterleitung
 
 Wie Sie sehen habe ich lange herumgepröbelt, jedoch habe ich es nicht geschafft automatisch einzuloggen. Es ist ausserdem auf dieser Seite auch gar nicht möglich, denn es wird mit Cookies gearbeitet. Und man kann nicht von einer Externen Seite ein Cookie auf eine Andere Seite schreiben
