@@ -10,3 +10,25 @@ Clickjacking ist eine Angriffsmethode, welche gegen Ende der 2000er-Jahre entsta
 
 In dieser Praxisarbeit wurde eine HTML-Seite erzeugt, welche in einem `<iframe>` eine fremde Webseite darstellt. Das Login-Formular dieser Webseite wird durch ein selber erstelltes Formular geschickt überlagert, so dass die Zugangsdaten des Opfers beim Absenden des Formulars an die Webseite [https://m183.gibz-informatik.ch/clickjacked-credentials](https://m183.gibz-informatik.ch/clickjacked-credentials) übermittelt werden.
 
+## 03 Sichere Passwörter
+
+Diese Aufgabe wurde von Nicolas und Noah zusammen gelöst.
+
+Anforderung ans Passwort:
+Damit die Registrierung erfolgreich abgeschlossen werden kann, muss das Passwort die folgenden Anforderungen erfüllen:
+- Das Passwort muss mindestens 8 Zeichen lang sein
+- Die folgenden Zeichengruppen müssen im Passwort vertreten  sein: Großbuchstaben, Kleinbuchstaben, Ziffern und Sonderzeichen.
+Das Passwort könnte natürlich noch mit mehr Sicherheitsbedingungen abgedeckt werden. Allerdings sollte es auch Bentuzerfreundlich blieben. Wenn man zu viele Bedinungenen festlegt, kann es für den Benutzer mühsam werden. Die oben genannten Punkte denken aber schon ein grossen Teil ab. Man könnte nun einfach noch mehr genauer konkrettisieren, dass z.B. eine bestimmte Anzahl an verschiedenen Zeichen vorkommen muss.
+
+Validierung der Emailadresse:
+Bei unserer Webseite wird auch die Emailadresse validert. Folgende Dinge werden beachten:
+- Das Emailadressfeld darf nicht leer sein.
+- Die Emailadresse muss ein gültigtes Format haben. (Die Adresse muss z.B. ein "@" Zeichen enthalten)
+
+Abspeicherung vom Passwort in der Datenbank:
+Wir haben uns dazu entschieden, dass wir das Passwort mit dem Bcrypt Algorithmus abspeichern, da dieser Algorithmus nach dem heutigen Stand als sicher gilt. Das Hashen vom Passwort überlassen wir einer externen API. Dies hat folgende Gründe: Es ist nicht üblich und auch nicht sinvoll, das hashen Clientseitig zu machen. Da es unüblich ist findet, sich dazu auch kaum sicherer/vertrauenswürdiger Code. Damit wir aber einen sicheren Hash bekommn, schicken wir unser Passwort wie einem Https Request an die API und bekommen einen Hash zurück.
+
+
+
+
+
