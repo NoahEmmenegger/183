@@ -7,6 +7,7 @@
     <title>Save Password</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script type="text/javascript" src="./validation.js"></script>
+    <script src="twin-bcrypt.min.js"></script>
     <script>
         handleClick = () => {
             let email = document.getElementById('email').value
@@ -15,7 +16,8 @@
             const validationResult = validate(email, password);
 
             if(!validationResult) {
-                console.log('success')
+                var hash = TwinBcrypt.hashSync("bacon");
+                document.getElementById('hashlabel').innerHTML = hash
             } else {
                 console.log(validationResult)
             }
@@ -37,6 +39,7 @@
         </div>
         <button type="button" onclick="handleClick()" class="btn btn-primary">Submit</button>
     </form>
+    <label id="hashlabel"></label>
 </body>
 
 </html>

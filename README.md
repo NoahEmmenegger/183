@@ -26,7 +26,7 @@ Bei unserer Webseite wird auch die Emailadresse validert. Folgende Dinge werden 
 - Die Emailadresse muss ein gültigtes Format haben. (Die Adresse muss z.B. ein "@" Zeichen enthalten)
 
 Abspeicherung vom Passwort in der Datenbank:
-Wir haben uns dazu entschieden, dass wir das Passwort mit dem Bcrypt Algorithmus abspeichern, da dieser Algorithmus nach dem heutigen Stand als sicher gilt. Das Hashen vom Passwort überlassen wir einer externen API. Dies hat folgende Gründe: Es ist nicht üblich und auch nicht sinvoll, das hashen Clientseitig zu machen. Da es unüblich ist findet, sich dazu auch kaum sicherer/vertrauenswürdiger Code. Damit wir aber einen sicheren Hash bekommn, schicken wir unser Passwort wie einem Https Request an die API und bekommen einen Hash zurück.
+Wir haben uns dazu entschieden, dass wir das Passwort mit dem Bcrypt Algorithmus abspeichern, da dieser Algorithmus nach dem heutigen Stand als sicher gilt. Den Bcrypt Algorithmus haben wir nicht selbst geschrieben. Den Code für den Algorithmus haben wir von dem folgenden Github Repository: https://github.com/fpirsch/twin-bcrypt/blob/master/twin-bcrypt.min.js. In unserer Index Datei kann dann die Methode `hashSync` aufgerufen werden und das Passwort kann als Klartext übergeben werden. Die Methode liefert uns dann den Hash Wert zurück, welcher dann theoretisch in die Datenbank gespeichert werden könnte. In unserem Fall wird der Hashwert dann aber einfach, auf unserer Webseite ausgegeben werden.
 
 
 

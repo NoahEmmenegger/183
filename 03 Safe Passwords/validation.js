@@ -13,19 +13,20 @@ function hasLength(input) {
 }
 
 function hasCapitalLetter(input) {
-    return !/[a-z]/.test(str) && /[A-Z]/.test(str)?'':'Must cotain capital letter'
+    return /[A-Z]/.test(input)?'':'Must cotain capital letter'
 }
 
 function hasLowerCaseLetter(input) {
-
+    console.log(/[a-z]/.test(input), input)
+    return /[a-z]/.test(input)?'':'Must contain lower case';
 }
 
 function hasNumber(input) {
-
+    return /\d/.test(input)?'':'Must contain number'
 }
 
 function hasSpecialCharacter(input) {
-
+    return /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(input)?'':'Must contain special character'
 }
 
 function validateFunctions(input, functions) {
@@ -47,6 +48,7 @@ function validate(email, password) {
         hasValue,
         hasLength,
         hasCapitalLetter,
+        hasLowerCaseLetter,
         hasNumber,
         hasSpecialCharacter
     ])
