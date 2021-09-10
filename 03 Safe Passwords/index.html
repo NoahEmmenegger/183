@@ -26,6 +26,15 @@
 </head>
 
 <body>
+    <div>
+        <b>Passwort Anforderungen</b>
+        <ul>
+            <li>Gross & Klein - Buchstaben</li>
+            <li>Minimum 1 Sonderzeichen</li>
+            <li>Minimum 8 Zeichen lang</li>
+            <li>Minimum eine Zahl</li>
+        </ul>
+    </div>
     <form id="form" style="padding: 50px;">
         <div class="form-group">
             <label for="email">Email</label>
@@ -39,6 +48,7 @@
         </div>
         <button type="button" onclick="handleClick()" class="btn btn-primary">Submit</button>
     </form>
+    <p>So würde es in die DB gespeichert werden:</p>
     <label id="hashlabel"></label>
 </body>
 
