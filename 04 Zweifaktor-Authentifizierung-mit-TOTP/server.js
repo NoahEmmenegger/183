@@ -39,9 +39,9 @@ app.get('/verify', function (req, res) {
     const user = username && users.find(x => x.user == username);
     
     if (verifyToken(user.secretToken, req.query.token)) {
-        res.end(JSON.stringify({ message: 'Verified' }));
+        res.end(JSON.stringify({ message: 'true' }));
     } else {
-        res.end(JSON.stringify({ message: 'Failed to verify' }));
+        res.end(JSON.stringify({ message: 'Falscher Token. Bitte versuchen Sie es erneut.' }));
     }
 });
 
@@ -50,6 +50,10 @@ app.get('/qrcode', function(req, res) {
     res.type('png');
     code.pipe(res);
   });
+
+app.get('/dashboard', (req, res) => {
+    res.send('You successfully loged in. This is your dashboard')
+})
 
 function hasUserToken(user) {
     if (user && user.secretToken !== undefined) {
