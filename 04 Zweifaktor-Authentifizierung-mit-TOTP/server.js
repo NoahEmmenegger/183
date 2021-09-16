@@ -25,9 +25,7 @@ app.get('/generateSecretForUser', (req, res) => {
     const user = username && users.find(x => x.user == username);
     if(!hasUserToken(user)) {
         // Generate a secret
-        console.log('ja')
         const secret = speakeasy.generateSecret({length: 20, name: `Key von ${username}`})
-        console.log(secret)
         user.secretToken = secret.base32
 
         res.send('/qrcode?qrurl=' + encodeURIComponent(secret.otpauth_url))
@@ -62,9 +60,7 @@ function hasUserToken(user) {
 }
 
 function verifyToken(secret, token) {
-    console.log(secret, token)
     let result = speakeasy.time.verify({ secret: secret, encoding: 'base32', token: token })
-    console.log(result)
     return result
 }
 
