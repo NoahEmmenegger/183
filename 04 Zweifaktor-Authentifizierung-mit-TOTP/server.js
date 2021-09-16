@@ -5,21 +5,23 @@ const port = 8080
 
 var app = express();
 
-//app.use(express.static(__dirname + '/views'))
+app.use(express.static(__dirname + '/views'))
 
 app.get('/', (req, res) => {
     // https://www.npmjs.com/package/speakeasy
-    res.send(speakeasy.totp({ secret: '4LRW4HZQCC52QP7NIEMCIT4FXYOLWI75', digits: 7, step: 10}))
-    return;
+    //res.send(speakeasy.totp({ secret: '4LRW4HZQCC52QP7NIEMCIT4FXYOLWI75', digits: 7, step: 10}))
+    //return;
 
     res.render('index')
 })
 
 app.get('/verify', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    
     if (verifyToken(req.query.token)) {
-        res.send('Verified');
+        res.end(JSON.stringify({ message: 'Verified' }));
     } else {
-        res.send('Failed to verify');
+        res.end(JSON.stringify({ message: 'Failed to verify' }));
     }
 });
 

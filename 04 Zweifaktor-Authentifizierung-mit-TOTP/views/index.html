@@ -2,14 +2,17 @@
 
 <head>
     <title>TOTP</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" defer="" async="">window.onload = () => {
+    <script type="text/javascript" defer>
+        window.onload = () => {
             document.getElementById('verify_button').onclick = () => {
-                $.get('verify?token=' + $('#token_input').val(), function (data) {
-                    $('#verify_result').text(data);
-                });
+                fetch('/verify?token=' + document.getElementById('token_input').value).then(response => {
+                    response.json().then(result => {
+                        document.getElementById('verify_result').innerHTML = result.message;
+                    })
+                })
             }
-        }</script>
+        }
+    </script>
 </head>
 
 <body>
@@ -17,6 +20,7 @@
         style="font-size: 30pt; font-family: Monaco, Inconsolata, Consolas, Helvetica, sans-serif; width: 155px;"
         placeholder="000000">
     <input id="verify_button" type="button" value="Verify">
+    <p id="verify_result"></p>
 </body>
 
 </html>
