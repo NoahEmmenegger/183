@@ -5,12 +5,12 @@ const port = 8080
 
 var app = express();
 
-app.use(express.static(__dirname + '/views'))
+//app.use(express.static(__dirname + '/views'))
 
 app.get('/', (req, res) => {
     // https://www.npmjs.com/package/speakeasy
-    //res.send(speakeasy.totp({ secret: '4LRW4HZQCC52QP7NIEMCIT4FXYOLWI75', digits: 7, step: 10}))
-    //return;
+    res.send(speakeasy.totp({ secret: '4LRW4HZQCC52QP7NIEMCIT4FXYOLWI75', digits: 7, step: 10}))
+    return;
 
     res.render('index')
 })
