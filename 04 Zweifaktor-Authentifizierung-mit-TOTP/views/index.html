@@ -2,6 +2,7 @@
 
 <head>
     <title>TOTP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script type="text/javascript" defer>
         window.onload = () => {
             document.getElementById('verify_button').onclick = () => {
@@ -13,14 +14,77 @@
             }
         }
     </script>
+    <script>
+        function handleClick() {
+            const username = document.getElementById('username').value
+            console.log(username)
+            fetch(`/hasUserSecurityToken?userName=${username}`).then(result => {
+                result.text().then(hasUserSecurityToken => {
+                    if(hasUserSecurityToken == 'true') {
+                        document.getElementById('VerifyModal').style.display = "block"
+                    } else {
+                        console.log('jop')
+                        fetch(`/generateSecretForUser?username=${username}`).then(result => {
+                            result.json().then(json => {
+                                console.log(json)
+
+                                document.getElementById('qrCodeModal').style.display = "block"
+                            })
+                        })   
+                    }
+                })
+            })
+        }
+    </script>
 </head>
 
 <body>
-    <input id="token_input" type="text"
-        style="font-size: 30pt; font-family: Monaco, Inconsolata, Consolas, Helvetica, sans-serif; width: 155px;"
-        placeholder="000000">
-    <input id="verify_button" type="button" value="Verify">
-    <p id="verify_result"></p>
+    <form id="form" style="padding: 50px;">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="username" value="donald" class="form-control" id="username" placeholder="Enter your username">
+            <small class="text-danger"></small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+            <small class="text-danger" id="passwordError"></small>
+        </div>
+        <button type="button" onclick="handleClick()" class="btn btn-primary">Login</button>
+    </form>
+
+    <div class="modal" tabindex="-1" aria-hidden="false" id="qrCodeModal" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    test
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <div class="modal" tabindex="-1" aria-hidden="false" id="VerifyModal" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    test
+                </div>
+                <div class="modal-body">
+                    <input id="token_input" type="text"
+                        style="font-size: 30pt; font-family: Monaco, Inconsolata, Consolas, Helvetica, sans-serif; width: 155px;"
+                        placeholder="000000">
+                    <input id="verify_button" type="button" value="Verify">
+                    <p id="verify_result"></p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
 </body>
 
 </html>
