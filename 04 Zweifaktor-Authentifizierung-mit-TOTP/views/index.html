@@ -4,14 +4,12 @@
     <title>TOTP</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script type="text/javascript" defer>
-        window.onload = () => {
-            document.getElementById('verify_button').onclick = () => {
-                fetch('/verify?token=' + document.getElementById('token_input').value).then(response => {
-                    response.json().then(result => {
-                        document.getElementById('verify_result').innerHTML = result.message;
-                    })
+        function verify() {
+            fetch('/verify?token=' + document.getElementById('token_input').value).then(response => {
+                response.json().then(result => {
+                    document.getElementById('verify_result').innerHTML = result.message;
                 })
-            }
+            })
         }
     </script>
     <script>
@@ -25,9 +23,10 @@
                     } else {
                         console.log('jop')
                         fetch(`/generateSecretForUser?username=${username}`).then(result => {
-                            result.json().then(json => {
+                            result.text().then(json => {
                                 console.log(json)
 
+                                document.getElementById('qr-image').src = json
                                 document.getElementById('qrCodeModal').style.display = "block"
                             })
                         })   
@@ -60,7 +59,12 @@
                     test
                 </div>
                 <div class="modal-body">
-                    
+                    <img id="qr-image">
+                    <input id="token_input" type="text"
+                        style="font-size: 30pt; font-family: Monaco, Inconsolata, Consolas, Helvetica, sans-serif; width: 155px;"
+                        placeholder="000000">
+                    <input id="verify_button" type="button" value="Verify">
+                    <p id="verify_result"></p>
                 </div>
             </div>
         </div>
@@ -78,7 +82,7 @@
                     <input id="token_input" type="text"
                         style="font-size: 30pt; font-family: Monaco, Inconsolata, Consolas, Helvetica, sans-serif; width: 155px;"
                         placeholder="000000">
-                    <input id="verify_button" type="button" value="Verify">
+                    <input id="verify_button" type="button" value="Verify" onclick="verify()">
                     <p id="verify_result"></p>
                 </div>
             </div>
