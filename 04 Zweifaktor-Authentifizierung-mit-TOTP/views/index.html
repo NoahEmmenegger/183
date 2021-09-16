@@ -4,10 +4,13 @@
     <title>TOTP</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script type="text/javascript" defer>
-        function verify() {
-            fetch('/verify?token=' + document.getElementById('token_input').value).then(response => {
+        function verify(modal) {
+            console.log(modal)
+            const username = document.getElementById('username').value
+
+            fetch(`/verify?username=${username}&token=${document.getElementById(`${modal}_token_input`).value}`).then(response => {
                 response.json().then(result => {
-                    document.getElementById('verify_result').innerHTML = result.message;
+                    document.getElementById(`${modal}_verify_result`).innerHTML = result.message;
                 })
             })
         }
@@ -60,11 +63,11 @@
                 </div>
                 <div class="modal-body">
                     <img id="qr-image">
-                    <input id="token_input" type="text"
+                    <input id="qrCodeModal_token_input" type="text"
                         style="font-size: 30pt; font-family: Monaco, Inconsolata, Consolas, Helvetica, sans-serif; width: 155px;"
                         placeholder="000000">
-                    <input id="verify_button" type="button" value="Verify">
-                    <p id="verify_result"></p>
+                    <input id="verify_button" type="button" value="Verify" onclick="verify('qrCodeModal')">
+                    <p id="qrCodeModal_verify_result"></p>
                 </div>
             </div>
         </div>
@@ -79,11 +82,11 @@
                     test
                 </div>
                 <div class="modal-body">
-                    <input id="token_input" type="text"
+                    <input id="VerifyModal_token_input" type="text"
                         style="font-size: 30pt; font-family: Monaco, Inconsolata, Consolas, Helvetica, sans-serif; width: 155px;"
                         placeholder="000000">
-                    <input id="verify_button" type="button" value="Verify" onclick="verify()">
-                    <p id="verify_result"></p>
+                    <input id="verify_button" type="button" value="Verify" onclick="verify('VerifyModal')">
+                    <p id="VerifyModal_verify_result"></p>
                 </div>
             </div>
         </div>
