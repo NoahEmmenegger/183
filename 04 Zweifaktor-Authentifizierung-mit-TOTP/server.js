@@ -10,7 +10,7 @@ app.set('view engine', 'jade')
 
 app.get('/', (req, res) => {
     // https://www.npmjs.com/package/speakeasy
-    res.send(speakeasy.totp({ secret: '4LRW4HZQCC52QP7NIEMCIT4FXYOLWI75', digits: 7, step: 10, encoding: 'ascii', algorithm: 'sha1' }))
+    res.send(speakeasy.totp({ secret: '4LRW4HZQCC52QP7NIEMCIT4FXYOLWI75', digits: 7, step: 10}))
     return;
 
     res.render('index', locals)
