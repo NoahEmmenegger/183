@@ -27,7 +27,12 @@ app.get('/hasUserSecurityToken', (req, res) => {
 
 app.get('/generateSecretForUser', (req, res) => {
     const username = req.query.username
+    const password = req.query.password
     const user = username && users.find(x => x.user == username);
+
+    if(!isPasswordValid(user, password)) {
+        return res.status(400).send({message: 'Not loged in!'})
+    }
     if (!hasUserToken(user)) {
         // Generate a secret
         const secret = speakeasy.generateSecret({ length: 20, name: `Key von ${username}` })
@@ -42,7 +47,7 @@ app.get('/verify_login', (req, res) => {
     const password = req.query.password
     const user = username && users.find(x => x.user == username);
 
-    res.send(!!(user && user.password === password))
+    res.send(isPasswordValid(user, password))
 })
 
 app.get('/verify', function (req, res) {
@@ -76,6 +81,10 @@ function hasUserToken(user) {
 function verifyToken(secret, token) {
     let result = speakeasy.time.verify({ secret: secret, encoding: 'base32', token: token })
     return result
+}
+
+function isPasswordValid(user, password) {
+    return !!(user && user.password === password)
 }
 
 app.listen(port, () => {
