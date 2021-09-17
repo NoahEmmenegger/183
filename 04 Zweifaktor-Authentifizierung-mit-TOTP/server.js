@@ -9,9 +9,14 @@ const port = 8080
 var app = express();
 
 app.use(express.static(__dirname + '/views'))
+app.engine('html', require('ejs').renderFile);
 
 app.get('/', (req, res) => {
     res.render('index')
+})
+
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard.html')
 })
 
 app.get('/hasUserSecurityToken', (req, res) => {
@@ -59,9 +64,6 @@ app.get('/qrcode', function (req, res) {
     code.pipe(res);
 });
 
-app.get('/dashboard', (req, res) => {
-    res.send('You successfully loged in. This is your dashboard')
-})
 
 function hasUserToken(user) {
     if (user && user.secretToken !== undefined) {
