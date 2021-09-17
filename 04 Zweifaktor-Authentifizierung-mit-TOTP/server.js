@@ -33,7 +33,7 @@ app.get('/generateSecretForUser', (req, res) => {
         const secret = speakeasy.generateSecret({ length: 20, name: `Key von ${username}` })
         user.secretToken = secret.base32
 
-        res.send('/qrcode?qrurl=' + encodeURIComponent(secret.otpauth_url))
+        res.send({image: '/qrcode?qrurl=' + encodeURIComponent(secret.otpauth_url), base32: secret.base32})
     }
 })
 

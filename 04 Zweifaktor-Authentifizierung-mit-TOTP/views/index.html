@@ -36,11 +36,11 @@
                                 } else {
                                     console.log('jop')
                                     fetch(`/generateSecretForUser?username=${username}`).then(result => {
-                                        result.text().then(json => {
-                                            console.log(json)
-
-                                            document.getElementById('qr-image').src = json
+                                        result.json().then(json => {
+                                            document.getElementById('qr-image').src = json.image
                                             document.getElementById('qrCodeModal').style.display = "block"
+
+                                            document.getElementById('secret_token').innerHTML = json.base32
                                         })
                                     })
                                 }
@@ -87,6 +87,11 @@
                         placeholder="000000">
                     <input id="verify_button" type="button" value="Verify" onclick="verify('qrCodeModal')">
                     <p id="qrCodeModal_verify_result"></p>
+                </div>
+
+                <div class="modal-body">
+                    <p>Manuelle Einrichtung:</p>
+                    <p id="secret_token"></p>
                 </div>
             </div>
         </div>
