@@ -30,5 +30,13 @@ Wir haben uns dazu entschieden, dass wir das Passwort mit dem Bcrypt Algorithmus
 
 
 
+## 04 Zweifaktor-Authentifizierung mit TOTP
 
+Dieses Projekt dient vorallem als Übung/Demo für TOTP. Man gelingt bewusst auch ohne Anmeldung ins Dashboard. Bei mehr Zeit würde das natürlich auch noch implementiert werden. Jedoch liegt bei dieser Praxisarbeit der Fokus auf TOTP.
+
+**<u>Reflexion</u>**
+
+Ich hatte am Anfang extrem viel Mühe das npm package "Speakeasy" anzuwenden. Denn ich habe es nie geschafft, ein valides Resultat zu erzeugen (Token und Secret haben nie miteinander übereinander gestummen). Demensprechend versuchte ich am Anfang den QR-Code in der Projekt-Präsentation in meine Applikation einzubauen, denn ich dachte, dass dies ein guter Zwischenschritt wäre, um langsam an das Ziel zu kommen. Jedoch habe ich extrem viel Zeit damit vergeudet, dass aus irgendeinem Grund dieser Security-Token aus der Projekt-Präsentation, welcher period 10 hatte, von Speakeasy nie als valid gegulten hatte... Ich habe sogar meinen Berufsbildner gefragt und sogar er konnte mir nicht weiterhelfen. Nach langen ausprobieren hatte ich dann endlich die richtigen parameter (encoding, algorithm, step, digits) und das Wissen wie man "Speakeasy" richtig anwenden sollte.
+
+**Feedback an Praxisarbeit:** Super spannendes Thema, was mir enorm viel Spass gemacht macht. Jedoch fast ein bisschen zu grosser Aufwand für in nur 5 Tagen.
 
