@@ -23,21 +23,32 @@
     <script>
         function handleClick() {
             const username = document.getElementById('username').value
-            console.log(username)
-            fetch(`/hasUserSecurityToken?userName=${username}`).then(result => {
-                result.text().then(hasUserSecurityToken => {
-                    if (hasUserSecurityToken == 'true') {
-                        document.getElementById('VerifyModal').style.display = "block"
-                    } else {
-                        console.log('jop')
-                        fetch(`/generateSecretForUser?username=${username}`).then(result => {
-                            result.text().then(json => {
-                                console.log(json)
+            const password = document.getElementById('password').value
 
-                                document.getElementById('qr-image').src = json
-                                document.getElementById('qrCodeModal').style.display = "block"
+            fetch(`/verify_login?username=${username}&password=${password}`).then(res => {
+                res.text().then(isLogin => {
+                    if (isLogin === 'true') {
+                        document.getElementById(`login_error`).remove()
+                        fetch(`/hasUserSecurityToken?userName=${username}`).then(result => {
+                            result.text().then(hasUserSecurityToken => {
+                                if (hasUserSecurityToken == 'true') {
+                                    document.getElementById('VerifyModal').style.display = "block"
+                                } else {
+                                    console.log('jop')
+                                    fetch(`/generateSecretForUser?username=${username}`).then(result => {
+                                        result.text().then(json => {
+                                            console.log(json)
+
+                                            document.getElementById('qr-image').src = json
+                                            document.getElementById('qrCodeModal').style.display = "block"
+                                        })
+                                    })
+                                }
                             })
                         })
+                    } else {
+                        document.getElementById(`login_error`).innerHTML = 'Wrong username or password. Please try again.';
+                        document.getElementById(`login_error`).className = 'alert alert-danger'
                     }
                 })
             })
@@ -49,7 +60,7 @@
     <form id="form" style="padding: 50px;">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="username" value="donald" class="form-control" id="username" placeholder="Enter your username">
+            <input type="username" class="form-control" id="username" placeholder="Enter your username">
             <small class="text-danger"></small>
         </div>
         <div class="form-group">
@@ -57,6 +68,7 @@
             <input type="password" class="form-control" id="password" placeholder="Password">
             <small class="text-danger" id="passwordError"></small>
         </div>
+        <p id="login_error"></p>
         <button type="button" onclick="handleClick()" class="btn btn-primary">Login</button>
     </form>
 

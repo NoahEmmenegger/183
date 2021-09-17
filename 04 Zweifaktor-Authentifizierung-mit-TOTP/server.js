@@ -32,6 +32,14 @@ app.get('/generateSecretForUser', (req, res) => {
     }
 })
 
+app.get('/verify_login', (req, res) => {
+    const username = req.query.username
+    const password = req.query.password
+    const user = username && users.find(x => x.user == username);
+
+    res.send(!!(user && user.password === password))
+})
+
 app.get('/verify', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
 
