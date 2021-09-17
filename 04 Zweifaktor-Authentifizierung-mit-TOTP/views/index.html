@@ -10,7 +10,7 @@
 
             fetch(`/verify?username=${username}&token=${document.getElementById(`${modal}_token_input`).value}`).then(response => {
                 response.json().then(result => {
-                    if(result.message === 'true') {
+                    if (result.message === 'true') {
                         location.href = 'http://localhost:8080/dashboard'
                     } else {
                         document.getElementById(`${modal}_verify_result`).innerHTML = result.message;
@@ -26,7 +26,7 @@
             console.log(username)
             fetch(`/hasUserSecurityToken?userName=${username}`).then(result => {
                 result.text().then(hasUserSecurityToken => {
-                    if(hasUserSecurityToken == 'true') {
+                    if (hasUserSecurityToken == 'true') {
                         document.getElementById('VerifyModal').style.display = "block"
                     } else {
                         console.log('jop')
@@ -37,7 +37,7 @@
                                 document.getElementById('qr-image').src = json
                                 document.getElementById('qrCodeModal').style.display = "block"
                             })
-                        })   
+                        })
                     }
                 })
             })
@@ -67,7 +67,8 @@
                     <h2>Dies ist ihr erstes login. Bitte aktivieren sie Zweifaktor-Authentifizierung</h1>
                 </div>
                 <div class="modal-body">
-                    <p>Öffnen Sie diesen QR-Code in Google Authenticator. Geben Sie dann den erhaltenen verifizierungs-key ein.</p>
+                    <p>Öffnen Sie diesen QR-Code in Google Authenticator. Geben Sie dann den erhaltenen
+                        verifizierungs-key ein.</p>
                     <img id="qr-image">
                     <input id="qrCodeModal_token_input" type="text"
                         style="font-size: 30pt; font-family: Monaco, Inconsolata, Consolas, Helvetica, sans-serif; width: 155px;"
@@ -77,7 +78,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
 
 
@@ -98,7 +98,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
 </body>
 
