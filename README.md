@@ -34,9 +34,19 @@ Wir haben uns dazu entschieden, dass wir das Passwort mit dem Bcrypt Algorithmus
 
 Dieses Projekt dient vorallem als Übung/Demo für TOTP. Man gelingt bewusst auch ohne Anmeldung ins Dashboard. Bei mehr Zeit würde das natürlich auch noch implementiert werden. Jedoch liegt bei dieser Praxisarbeit der Fokus auf TOTP.
 
-**Users**
+Das Projekt wurde nicht mit der Projektvorlage umgesetzt. 
+
+**Weshalb node.js express?**
+Meine lieblings Programmiersprache ist JavaScript/Node.js. Jedoch habe ich noch nie mit Express gearbeitet. Ich wollte schon immer mal express besser kennenlernen, und desshalb habe ich mich für express entschieden.
+
+**Zusätzliche überlegung**
+Damit die Applikation zu 100% weiss, dass der user den QR code erfolgreich eingerichtet hat, muss man den Token gleich noch eingeben.
+
+**Users (jeweils Benutzername - Passwort)**
 * donald - niceHair
 * joe - kamala
+
+*Falls man weitere User erstellen möchte, kann man das users.json erweitern.*
 
 **<u>Reflexion</u>**
 

@@ -17,3 +17,6 @@
 `Node version: 10.22.1`
 
 `NPM Version: 6.14.6`
+
+
+*Mehr Infos im Globalen ReadMe*
