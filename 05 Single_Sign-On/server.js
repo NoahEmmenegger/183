@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const {OAuth2Client} = require('google-auth-library');
 
 let users = require('./users.json')
+const appSettings = require('./appsettings.json')
 
 const port = 5000
 
@@ -12,8 +13,7 @@ var app = express();
 
 var jsonParser = bodyParser.json()
 
-const CLIENT_ID = '1086787687783-5vfu7ee5o807vp4e844r907b6k67nu53.apps.googleusercontent.com'
-const client = new OAuth2Client(CLIENT_ID);
+const client = new OAuth2Client(appSettings.id);
 
 app.use(express.static(__dirname + '/views'))
 app.engine('html', require('ejs').renderFile);
@@ -68,7 +68,7 @@ function checkAuthenticated(req, res, next){
     async function verify() {
         const ticket = await client.verifyIdToken({
             idToken: token,
-            audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+            audience: appSettings.id,
         });
         const payload = ticket.getPayload();
         user.name = payload.name;

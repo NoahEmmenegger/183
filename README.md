@@ -54,3 +54,23 @@ Ich hatte am Anfang extrem viel Mühe das npm package "Speakeasy" anzuwenden. De
 
 **Feedback an Praxisarbeit:** Super spannendes Thema, was mir enorm viel Spass gemacht macht. Jedoch fast ein bisschen zu grosser Aufwand für in nur 5 Tagen.
 
+
+
+## 05 Single Sign On
+**Worklfow**
+1. Startseite öffnen
+2. Sign in with google
+3. Account auswählen
+4. Man gelingt zum Dashboard -> Token wird in Cookies gespeichert, damit man sich beim nächsten Mal nicht mehr einloggen muss.
+5. Startseite erneut aufrufen. Man wird automatisch wieder zum dashboard weitergeleitet.
+6. Sign out drücken. Man wird dann auf die Startseite weitergeleitet und man könnte sich mit einem Anderen Account anmelden.
+7. Auf Dashboard versuchen zuzugreifen -> ohne dass man eingeloggt ist. Man wird dann automatisch auf eine 403 Seite weitergeleitet.
+
+**Account**
+
+Sobald man das erste mal mit Google eingeloggt hat, wird die Email und die UserId abgespreicherrt. Falls diese Applikation produktiv gebraucht werden würde, könnte man das User-Objekt erweitern.
+
+**Reflexion**
+
+Ich finde Google - OAuth sehr Nützlich. Sowohl für den Benutzer wie auch für den Developer ist es sehr einfach anzuwenden. Ich kann mir gut vorstellen, dass ich private Projekte öfters mit OAuth erstelle. Aussedem ist OAuth auch ziemlich sicher und trotzdem einfach für den Nutzer anwendbar.
+Bis heute habe ich immer auf diese Funktion verzichtet, wenn ich auf einer Webseite die Möglichkeit hatte mit OAuth einzuloggen. Denn ich dachte, dass die Webseitenbetreiber so an kritische Daten von meinem Google-Profil kommen. Jedoch weiss ich jetzt, dass das ganze Ziemlich sicher ist und werde jetzt öfters auf diese Funktionalität zugreiffen. 
