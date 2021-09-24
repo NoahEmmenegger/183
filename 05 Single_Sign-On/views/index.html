@@ -2,11 +2,43 @@
 
 <head>
     <title>TOTP</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <meta name="google-signin-client_id"
+        content="1086787687783-5vfu7ee5o807vp4e844r907b6k67nu53.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <script>
+        function onSignIn(googleUser) {
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log(id_token);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/login');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function () {
+                console.log('Signed in as: ' + xhr.responseText);
+                if (xhr.responseText == 'success') {
+                    location.assign('/dashboard')
+                }
+            };
+            xhr.send(JSON.stringify({ token: id_token }));
+        }
+    </script>
 </head>
 
 <body>
-    test
+    <h1>tset</h1>
+    <div style="justify-content: center;">
+        <div class="card"  style="width: 18rem; margin: auto;">
+            <div class="card-body">
+                <div class="card-title">
+                    Please sign in first!
+                </div>
+                <div>
+                    <div style="width: 100px;" class="g-signin2" data-onsuccess="onSignIn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
