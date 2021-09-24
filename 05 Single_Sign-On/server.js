@@ -4,6 +4,8 @@ const cookieParser = require("cookie-parser");
 
 const {OAuth2Client} = require('google-auth-library');
 
+let users = require('./users.json')
+
 const port = 5000
 
 var app = express();
@@ -24,8 +26,11 @@ app.get('/', (req, res) => {
 
 app.get('/dashboard', checkAuthenticated, (req, res) => {
     let user = req.user;
-    console.log(user)
     res.render('dashboard.html', {user})
+})
+
+app.get('/403', (req, res) => {
+    res.send('You have no access')
 })
 
 app.post('/login', jsonParser, (req, res) => {
@@ -38,6 +43,13 @@ app.post('/login', jsonParser, (req, res) => {
         });
         const payload = ticket.getPayload();
         const userid = payload['sub'];
+        const email = payload['email']
+        if(!users.find(x => x.email == email)) {
+            users.push({
+                userid: userid,
+                email: email
+            })
+        }
     }
     verify()
         .then(() => {
@@ -69,7 +81,7 @@ function checkAuthenticated(req, res, next){
           next();
       })
       .catch(err=>{
-          res.redirect('/login')
+          res.redirect('/403')
       })
 
 }

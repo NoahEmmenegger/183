@@ -10,12 +10,10 @@
     <script>
         function onSignIn(googleUser) {
             var id_token = googleUser.getAuthResponse().id_token;
-            console.log(id_token);
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/login');
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = function () {
-                console.log('Signed in as: ' + xhr.responseText);
                 if (xhr.responseText == 'success') {
                     location.assign('/dashboard')
                 }
@@ -26,7 +24,7 @@
 </head>
 
 <body>
-    <h1>tset</h1>
+    <h1>Nerdopedia</h1>
     <div style="justify-content: center;">
         <div class="card"  style="width: 18rem; margin: auto;">
             <div class="card-body">

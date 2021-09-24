@@ -13,6 +13,10 @@
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
+                document.cookie = `session-token=;`
+                location.assign('.')
+            }).catch(() => {
+                document.cookie = `session-token=;`
                 location.assign('.')
             });
         }
@@ -29,15 +33,12 @@
 <body>
     <div style="margin: 200px;">
         <div class="row" style="justify-content: center;">
-            <a style="align-self: center; margin-right: 20px;" class="btn btn-primary" href=".">Back</a>
+            <button style="align-self: center; margin-right: 20px;" class="btn btn-primary" onclick="signOut()">sign out</button>
             <h1>This is your dashboard, <%= user.name %>...</h1>
-        </div>
-        <div class="row" style="justify-content: center;">
-            <button class="btn btn-primary" onclick="signOut()">sign out</button>
         </div>
         <img style="width: 400px; margin: 20px;" class="rounded mx-auto d-block" src="<%= user.picture %>">
         <div style="margin: 0px 200px;">
-            <p class="alert alert-success">You have successfully logged in!</p>
+            <p class="alert alert-success">You are logged in!</p>
         </div>
     </div>
 </body>
