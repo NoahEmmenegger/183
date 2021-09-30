@@ -106,7 +106,16 @@ function generateDigestAuthenticationData(wwwAuthenticationHeaderData) {
 
     // Generate values for 'nc' and 'cnonce'. These values might be fictional (but sensible).
     const nc = Date.now()
-    const cnonce = "1b243babe1a2db2f"
+
+    var randomChars = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for(var i = 0; i < 16; i++) {
+        randomChars += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    console.log('nonce text', randomChars)
+
+    const cnonce = randomChars
 
 
     // Generate hashes (usually called ha1, ha2 and response)
