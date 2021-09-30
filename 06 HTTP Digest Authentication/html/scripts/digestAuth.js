@@ -113,20 +113,23 @@ function generateDigestAuthenticationData(wwwAuthenticationHeaderData) {
 
     const h1 = md5(`${username}:${wwwAuthenticationHeaderData.realm}:${password}`)
     // MD5(method:digestURI)
-    const h2 = md5(`${wwwAuthenticationHeaderData.qop}:${path}`)
+    const h2 = md5(`GET:${path}`)
 
     // MD5(HA1:nonce:HA2)
-    const response = md5(`${h1}:${wwwAuthenticationHeaderData.nonce}:${h2}`)
+    const response = md5(`${h1}:${wwwAuthenticationHeaderData.nonce}:${nc}:${cnonce}:${wwwAuthenticationHeaderData.qop}:${h2}`)
 
 
     // Return digest header data as a javascript object containing all (nine) relevant directives.
     return {
-        ...wwwAuthenticationHeaderData,
-        username,
-        uri: path,
-        cnonce,
-        nc,
-        response,
+        nonce: `"${wwwAuthenticationHeaderData.nonce}"`,
+        algorithm: `"${wwwAuthenticationHeaderData.algorithm}"`,
+        qop: `"${wwwAuthenticationHeaderData.qop}"`,
+        realm: `"${wwwAuthenticationHeaderData.realm}"`,
+        username: `"${username}"`,
+        uri: `"${path}"`,
+        cnonce: `"${cnonce}"`,
+        nc: `"${nc}"`,
+        response: `"${response}"`,
     };
 }
 
