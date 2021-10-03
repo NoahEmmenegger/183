@@ -74,3 +74,15 @@ Sobald man das erste mal mit Google eingeloggt hat, wird die Email und die UserI
 
 Ich finde Google - OAuth sehr Nützlich. Sowohl für den Benutzer wie auch für den Developer ist es sehr einfach anzuwenden. Ich kann mir gut vorstellen, dass ich private Projekte öfters mit OAuth erstelle. Aussedem ist OAuth auch ziemlich sicher und trotzdem einfach für den Nutzer anwendbar.
 Bis heute habe ich immer auf diese Funktion verzichtet, wenn ich auf einer Webseite die Möglichkeit hatte mit OAuth einzuloggen. Denn ich dachte, dass die Webseitenbetreiber so an kritische Daten von meinem Google-Profil kommen. Jedoch weiss ich jetzt, dass das ganze Ziemlich sicher ist und werde jetzt öfters auf diese Funktionalität zugreiffen. 
+
+
+
+## 06 HTTP Digest Authentication
+
+Ich fand diese Praxisarbeit spannend, weil man sich mal zuerst in ein anderen Code einlesen musste, bevor man starten kann. Denn ich habe bis jetzt immer ohne Projektvorlage gearbeitet. 
+
+Das implementieren war mit Hilfe des wikipedia Eintrages ziemlich einfach umzusetzen. Leider habe ich viel Zeit damit vergeudet, dass ich die quotes falsch gesetzt habe.
+
+**Vertiefung**
+
+Da ich noch nicht viel mit Docker gearbeitet habe, fand ich die Vertiefung ziemlich schwierig. Im htaccess file muss man ja den Pfad zum htpasswd file angeben. Jedoch habe ich den korrenten pfad nicht herausgefunden. Es gab immer die Fehlermeldung "directory can not be found". Und weil ich docker eben nicht so gut kannte, musste ich mich über die Filestruktur in einem Docker container informieren. Ich verschte mit WINSCP in den Docker container reinzuschauen, damit ich die Filestruktur sehen könnte, jedoch habe ich nach längeren Ausprobieren herausgefunden, dass das mit SFTP nicht funktionierte. Zum Glück habe ich dann den Befehl "docker-compose exec apache sh" gefunden. Mit diesem Command konnte ich in den docker-container rein ssh connecten. Jedoch fiel es mir weiterhin schwer den richtigen Pfad herauszufinden. Nach einer Google-recherche habe ich den Command "find . -name "foo*"" gefunden. Mit diesem command kann man in einem linux filesystem nach dateien suchen. Das hat dann ein erfolgreiches ergebnis angezeigt und ich hatte endlich den pfad, in welchem meine files waren. Und so konnte ich dann auch den korrekten pfad für das htacces file finden. Die files sind unter "/var/www/". 
