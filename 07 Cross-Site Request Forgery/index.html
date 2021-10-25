@@ -60,6 +60,27 @@
                 "method": "POST",
                 "mode": "cors"
             });
+
+            fetch("https://m183.gibz-informatik.ch/api/csrf/postMessage", {
+                credentials: 'include',
+                "headers": {
+                    "accept": "application/json, text/plain, */*",
+                    "accept-language": "en-US,en;q=0.9,de;q=0.8",
+                    "content-type": "multipart/form-data; boundary=----WebKitFormBoundary0h1eSnVPsLEOHHz9",
+                    "sec-ch-ua": "\"Google Chrome\";v=\"95\", \"Chromium\";v=\"95\", \";Not A Brand\";v=\"99\"",
+                    "sec-ch-ua-mobile": "?0",
+                    "sec-ch-ua-platform": "\"Windows\"",
+                    "sec-fetch-dest": "empty",
+                    "sec-fetch-mode": "cors",
+                    "sec-fetch-site": "same-origin",
+                    "cookie": "M183=CfDJ8KWWz-9FZ0ZLo1r4sL0b9aPQPih9-jTOZGaJnDILTYBJzQwxTe9qu5fWQdy6GQfJr3iu8UGAU2Yen1hhD64orZ7OmEavF3cuOVDssnh3VjBJnmM9iDfikOhtnNn-ICpqWSk4jq7DIKV_yfHh6C9FBdXO9TqN3PiEUcXx262pLKycJBjC7DlZR5nG5vMWbwbrnZOywR8ZbeXWC2G76kKngK0LX4kcnD8qqj71KpeZ2mmfBkmf1PaGVMhNiSD_ltK3uzA3cA6VOo5iemOsgaATlM-XpXgSRKBfhjqLrn71nYkUCdfrTOKEOoUm1MzbL7-UsgG-ZAIZ5ggQWjcChrvXQMzwPh0hLYjCFEKco7AdhGOM0msWkRBhYikxie3sI-t03Z1TwOzpNXd0b0-WVQptVhM3lg9lGFgde5WgD8z_EyUtCVx3UJ0H8bXy7ispdV8xcUoWKyB725o-Kmvnx5hT_pD2GdoD0ELEypGoYjIHzu46; XSRF-Token=2vgLlvRavwKjqn9LqiBD",
+                    "Referer": "https://m183.gibz-informatik.ch/csrf",
+                    "Referrer-Policy": "strict-origin-when-cross-origin"
+                },
+                "body": "------WebKitFormBoundary0h1eSnVPsLEOHHz9\r\nContent-Disposition: form-data; name=\"csrf\"\r\n\r\n\r\n------WebKitFormBoundary0h1eSnVPsLEOHHz9\r\nContent-Disposition: form-data; name=\"message\"\r\n\r\ne\r\n------WebKitFormBoundary0h1eSnVPsLEOHHz9--\r\n",
+                "method": "POST"
+            });
+            
         }
     </script>
 </head>
