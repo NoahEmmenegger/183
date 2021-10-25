@@ -86,3 +86,9 @@ Das implementieren war mit Hilfe des wikipedia Eintrages ziemlich einfach umzuse
 **Vertiefung**
 
 Da ich noch nicht viel mit Docker gearbeitet habe, fand ich die Vertiefung ziemlich schwierig. Im htaccess file muss man ja den Pfad zum htpasswd file angeben. Jedoch habe ich den korrenten pfad nicht herausgefunden. Es gab immer die Fehlermeldung "directory can not be found". Und weil ich docker eben nicht so gut kannte, musste ich mich über die Filestruktur in einem Docker container informieren. Ich verschte mit WINSCP in den Docker container reinzuschauen, damit ich die Filestruktur sehen könnte, jedoch habe ich nach längeren Ausprobieren herausgefunden, dass das mit SFTP nicht funktionierte. Zum Glück habe ich dann den Befehl "docker-compose exec apache sh" gefunden. Mit diesem Command konnte ich in den docker-container rein ssh connecten. Jedoch fiel es mir weiterhin schwer den richtigen Pfad herauszufinden. Nach einer Google-recherche habe ich den Command "find . -name "foo*"" gefunden. Mit diesem command kann man in einem linux filesystem nach dateien suchen. Das hat dann ein erfolgreiches ergebnis angezeigt und ich hatte endlich den pfad, in welchem meine files waren. Und so konnte ich dann auch den korrekten pfad für das htacces file finden. Die files sind unter "/var/www/". 
+
+
+
+## 07 Cross-Site Request Forgery
+
+Diese Praxisarbeit ist mir sehr einfach gelungen. Denn man konnte ganz einfach de Requests kopieren.
